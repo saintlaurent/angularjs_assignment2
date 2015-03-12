@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assignment 2 - Catherine Li</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+    <script>
+
+        var myApp = angular.module('myApp', []);
+        myApp.controller('ExampleController', ['$scope', function ($scope) {
+
+
+            $scope.update = function (input) {
+                alert("Thanks for your submission, " + input);
+            };
+
+        }]);
+    </script>
+    <style type="text/css">
+        .css-form input.ng-invalid.ng-dirty { border: solid red 2px }
+
+    </style>
+
+</head>
+
+<body ng-app="myApp">
+<form name="myForm" ng-controller="ExampleController" class="css-form">
+
+    Name: <br><input name="name" ng-model="name" required/>
+    <span ng-show="myForm.name.$error.required" >Please enter your name. </span><br>
+
+    Password: <br><input type="password" ng-model="password" name="password" equals="{{vpassword}}" required ng-minlength="8" ng-maxlength="20"/>
+    <span ng-show="myForm.password.$error.required" >Please enter a password. </span>
+    <span ng-show="myForm.password.$error.minlength">Minimum 8 characters required for password!</span>
+    <span ng-show="myForm.password.$error.maxlength">More than 20 characters not permitted for password!</span>
+
+    Verify Password:<br> <input type="password" name="vpassword" ng-model="vpassword" required equals="{{password}}"/>
+    <span ng-show="myForm.vpassword.$error.required">Please verify your password. </span>
+    <span ng-show="myForm.vpassword.$error.equals">Please ensure passwords match. </span>
+
+
+    <input type="submit" ng-click="update(name)" ng-disabled="myForm.$invalid || password != vpassword" />
+    <!--<span ng-hide="myForm.$invalid">Thanks for your submission, {{name}}</span>-->
+</form>
+<hr>
+
+</body>
+</html>
