@@ -35,7 +35,7 @@
 
     Verify Password:<br> <input type="password" name="vpassword" ng-model="vpassword" required equals="{{password}}"/>
     <span ng-show="myForm.vpassword.$error.required">Please verify your password. </span>
-   
+    <span ng-show="myForm.vpassword.$error.equals">Please ensure passwords match. </span>
 
 
     <input type="submit" ng-click="update(name)" ng-disabled="myForm.$invalid || password != vpassword" />
